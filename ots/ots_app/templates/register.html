@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container mt-5" style="padding-top:20px ;">
+    <div class="row d-flex justify-content-center align-items-center" style="height: 80vh;">
+        <!-- Register Page -->
+        <div class="col-sm-9 col-md-5 size">
+            <h4 class="alert  text-center" style="background-color: #7eb8ff;color:#fff">Sign up</h4>
+            <form action="{% url 'verifyotp' %}" class="row g-1 needs-validation" novalidate method="POST">
+                {% csrf_token %}
+                <label for="usernameInputName" class="form-label">UserName:</label>
+                <input type="text" class="form-control" id="usernameInputName" name="user_name" value="{{context.user_name}}" required autocomplete="on" style="border-color:#7eb8ff;">
+                <div id="error-input-Username" style="color: #dc3545;"></div>
+                
+                <label for="passwordInputPassword" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="passwordInputPassword" name="password" value="{{context.password}}" required autocomplete="on" style="border-color:#7eb8ff;">
+                <div id="error-input-password" style="color: #dc3545;"></div>
+            
+                <label for="nameInputName" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="nameInputName" name="name" value="{{context.name}}" required autocomplete="on" style="border-color:#7eb8ff;">
+                <div id="error-input-name" style="color: #dc3545;"></div>
+                
+                <label for="emailInputEmail" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="emailInputEmail" name="email" value="{{context.email}}" required autocomplete="on" style="border-color:#7eb8ff;">
+                <div id="error-input-email" style="color: #dc3545;"></div>
+                
+                <button type="submit" class="btn  mt-4" style="background-color:#7eb8ff;color:aliceblue"  onmouseover="this.style.backgroundColor='#7eb8ff'"; onmouseout="this.style.backgroundColor='#7eb8ffd5'">Send OTP</button>
+                <a href="{% url 'login' %}" type="submit" class="btn  mt-4" style="background-color:#7eb8ff;color:aliceblue"  onmouseover="this.style.backgroundColor='#7eb8ff'"; onmouseout="this.style.backgroundColor='#7eb8ffd5'"><span style="font-size:larger">&#8592;</span> Already Registered</a>
+            </form>
+         
+            {% if otp_validate %}
+                <form action="{% url 'store-candidate' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mt-1">
+                        <label for="otpInputOtp" class="form-label">Enter OTP</label>
+                        <input type="text" class="form-control" name="otp" id="otpInputOtp" style="border-color:#7eb8ff;">
+                        
+                        <button type="submit" class="btn mt-3" id="btn" style="background-color:#7eb8ff;color:aliceblue"  onmouseover="this.style.backgroundColor='#7eb8ff'"; onmouseout="this.style.backgroundColor='#7eb8ffd5'">Register</button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

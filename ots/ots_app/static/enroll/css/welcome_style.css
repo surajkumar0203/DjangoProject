@@ -1,0 +1,20 @@
+.c-item{
+    height: 580px;
+    /* height: 480px; */
+}
+.c-img{
+    max-width: 1920px;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+    z-index: 1;
+    opacity: 0.7;
+}
+.button-contener{
+    height: 55%;
+    z-index: 2;
+}
+
+/* hover */
+
+

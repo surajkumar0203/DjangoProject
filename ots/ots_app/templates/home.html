@@ -1,0 +1,104 @@
+{% extends 'welcome.html' %}
+{% load static %}
+<!--  -->
+{% block image_arrow%}
+<img src="{% static 'enroll/img/arrow.png' %}" style="cursor: pointer; transform:rotate(-90deg); transition:0.4s" alt="arrow" width="30"  id="arrow-img">
+{% endblock image_arrow %}
+ {% block buttons %} 
+ <div class="position-absolute top-100 mt-1 " style="display: none;" id="log-reg-button">
+  <a href="{% url 'test-history' %}" class="btn  me-3 rounded-pill" style="background-color:#2077e2;color:aliceblue"  onmouseover="this.style.backgroundColor='#2077e2ce'"; onmouseout="this.style.backgroundColor='#2077e2'" type="submit">Show Test History</a>
+  <a href="{% url 'logout' %}" class="btn rounded-pill" style="background-color:#2077e2;color:aliceblue"  onmouseover="this.style.backgroundColor='#2077e2ce'"; onmouseout="this.style.backgroundColor='#2077e2'" type="submit">log-out</a>
+</div>
+{% endblock buttons %} 
+
+{% block login_button %}
+<!-- we can't show button on home page or after login -->
+{% endblock login_button %}
+
+{% block thumbnail %}
+
+  <div class="album py-5 bg-body-tertiary mt-4 ">
+    <div class="container mt-4">
+      <!-- search bar -->
+      <div class="row d-flex justify-content-end">
+        <div class="col-lg-3 ">
+
+          <div class="input-group mb-3" >
+            <input type="search" class="form-control" name="query" placeholder="Search" aria-label="Search" id="search"
+              aria-describedby="search-button" value="{{values}}">
+          </div>
+
+        </div>
+      </div>
+      <!-- end search bar -->
+       <!-- pagination -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        {% if titles_imgs.has_previous %}
+          <li class="page-item ">
+            <a class="page-link" style="color:#7eb8ff" href="?page=1">First</a>
+          </li>
+        <li class="page-item ">
+          <a class="page-link" style="color:#7eb8ff" href="?page={{titles_imgs.previous_page_number}}">Previous</a>
+        </li>
+        {% endif %}
+
+        {% for n in totalpagelist %}
+          {% if titles_imgs.number == n %}
+            <li class="page-item" ><a class="page-link" style="background:#8fbae8;color:#fff" href="?page={{n}}">{{n}}</a></li>
+          
+          {% else  %}
+            <li class="page-item"><a class="page-link" style="color:#7eb8ff" href="?page={{n}}">{{n}}</a></li>
+          {% endif %}
+
+        {% endfor %}
+        
+        {% if titles_imgs.has_next %}
+          <li class="page-item">
+           
+            <a class="page-link  " style="color:#7eb8ff" href="?page={{titles_imgs.next_page_number}}">Next</a>
+          </li>
+        {% endif %}
+        <li class="page-item ">
+          <a class="page-link  " style="color:#7eb8ff" href="?page={{lastpage}}">Last</a>
+        </li>
+      </ul>
+    </nav>
+
+   
+  
+    <!-- end pagination -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 " id="div-box">
+
+        {% for title_img in titles_imgs %}
+        
+          <div class="col">
+            <div class="card shadow-sm" >
+              <img class="bd-placeholder-img card-img-top mt-2" id="img-contain" role="img"
+                aria-label="Placeholder: Thumbnail" width="100%" height="200" src="/media/{{title_img.img}}" alt=""
+                style="object-fit: contain;">
+              <div class="card-body  ">
+                <p class="card-text" >{{title_img.title}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'instruction' title_img.title %}" type="button" class="btn btn-sm "style="background-color:#7eb8ff;color:aliceblue"  onmouseover="this.style.backgroundColor='#7eb8ff'"; onmouseout="this.style.backgroundColor='#7eb8ffd5'">Click
+                      Here</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        {% endfor %}
+            <div class="text-bg-danger p-3  container mt-5 rounded" style="display: none;" id="faild-search">Search Faild</div>
+        </div>
+    </div>
+   
+  </div>
+
+
+{% endblock thumbnail %}
+
+{% block thumbnail_search %}
+  <script src="{% static 'enroll/js/search.js' %}"></script>
+{% endblock thumbnail_search %}

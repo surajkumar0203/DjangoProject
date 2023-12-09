@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  
+  
+    <div class="container d-flex justify-content-center align-items-center mt-5" style="height:85vh">
+        <div class="col-xl-7  p-3   shadow-lg  mb-3 bg-body-tertiary rounded size">
+            <h4 class="alert mb-0 pb-1 text-center" style="color:#7eb8ff">Leave Your Message</h4>
+            <form action="{% url 'send_user_message' %}" onsubmit="return f1()" class="row g-1 needs-validation" novalidate method="POST">
+              {% csrf_token %}
+  
+              {% if 'username' not in request.session.keys %}
+                <label for="nameInputName" class="form-label text-start">Name:</label>
+                <input type="text" class="form-control" id="nameInputName " name="name" value="{{context.name}}" required
+                  autocomplete="off" style="border-color:#7eb8ff ">
+                <div id="error-input-name"></div>
+  
+                <label for="emailInputEmail" class="form-label text-start">Email:</label>
+                <input type="email" class="form-control" id="emailInputEmail" name="email" value="{{context.email}}"
+                  required autocomplete="off" style="border-color:#7eb8ff ">
+                <div id="error-input-email"></div>
+              {% endif %}  
+  
+              <label for="validationServer04" class="form-label text-start">Choose</label>
+              <select class="form-select" name="options" id="validationServer04" aria-describedby="validationServer04Feedback" required
+                style="border-color:#7eb8ff">
+                <option value="Feedback">Feedback</option>
+                <option value="Query">Query</option>
+                
+              </select>
+  
+              <label for="validationTextarea" class="form-label text-start">Message</label>
+              <textarea rows="4" class="form-control" id="validationTextarea" name="user_message" placeholder="Your Message" required
+                style="border-color:#7eb8ff "></textarea>
+                <div class="text-start" id="message-textarea" style="color: #dc3545;"></div>
+              <button type="submit" class="btn mt-4" style="background-color:#7eb8ff;color:aliceblue"  onmouseover="this.style.backgroundColor='#7eb8ff'"; onmouseout="this.style.backgroundColor='#7eb8ffd5'">Send Message</button>
+            </form>
+          </div>
+        </div>
+     
+    </div> 
+   
+{% endblock content %}
+{% block footer %}
+<div  style="background-color:#7eb8ff; border:1px solid #6f89aa;border-radius:3px" >
+  <div class="d-flex justify-content-between align-items-center mt-1   text-center">
+    <div class="mt-3"><p><span class="ms-2">&#169;</span> 2023 Copyright: Iɱƚιहाɳ.com</p></div>
+  <div class="justify-content-end  flex-sm-column  text-center">
+    <a href=""><img src="{% static 'enroll/img/facebook.png' %}" alt="" style="width: 25px;" class="m-1 "></a>
+    <a href="https://github.com/surajkumar0203" target="_blank"><img src="{% static 'enroll/img/github.png' %}" alt="" style="width: 25px;" class="m-1"></a>
+    <a href=""><img src="{% static 'enroll/img/instagram.png' %}" alt="" style="width: 25px;" class="m-1"></a>
+    <a href=""><img src="{% static 'enroll/img/twitter.png' %}" alt="" style="width: 25px;" class="m-1"></a>
+  </div>
+</div>
+</div>
+{% endblock footer %}
+
+

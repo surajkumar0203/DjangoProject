@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- for disable Inspect element and control button  -->
+
+<html oncontextmenu="return dis()" id="content" onselectstart="return false">
+
+</html>
+{% block prevent %}
+
+<script src="{% static 'enroll/js/test_paper__prevent.js' %}"></script>
+{% endblock prevent %}
+
+<div class="container p-2" style="margin-top:90px;">
+    {% if Questions.name %}
+    <h2 class="fs-5">Hello <span style="font-style: italic;">{{ Questions.name }}</span> ,You are select <span
+            style="font-style: italic;">{{ Questions.subject }}</span> subject</h2>
+    {% endif %}
+    <div class="row size text-center border  border-0 d-flex ">
+        <center>
+
+
+        <form action="{% url 'result' %}" onsubmit="return form_validate()" id="myform" class="needs-validation"
+            novalidate method="post">
+            {% csrf_token %}
+
+            {% for question in Questions.que %}
+          
+                <div class="col-sm-6 themed-grid-col border border-primary border-1 mt-3 main-div shadow rounded-top">
+                    <div class="border-bottom border-primary border-2">
+                        <pre class="m-3" style="display: flex;">
+                                    <code style="text-align: start;display: flex;">
+                                        
+                                        <input type="hidden" name="question_{{question.Qid}}" value="{{question.Qid}}">
+                                        <p style="font-family: 'Noto Sans', sans-serif;font-size:larger;color:#3d6eb9">{{question.Question}}</p>
+                                    </code>
+                                </pre>
+
+                    </div>
+                    <div>
+                        <p class="m-3">
+                            <input type="radio" class="btn-check check-1" name="option_{{question.Qid}}"
+                                value="{{question.option_a}}a" id="btn-check-outlined-{{question.Qid}}1"
+                                autocomplete="off" required>
+                            
+                            <label class="btn btn-outline-primary shadow rounded" for="btn-check-outlined-{{question.Qid}}1"
+                                style="width:60%;">{{ question.option_a }}</label>
+                        </p>
+
+                        <p class="m-3">
+                            <input type="radio" class="btn-check check-2 " name="option_{{question.Qid}}"
+                                value="{{question.option_b}}b" id="btn-check-outlined-{{question.Qid}}2"
+                                autocomplete="off" required>
+                            
+                            <label class="btn btn-outline-primary shadow rounded" for="btn-check-outlined-{{question.Qid}}2"
+                                style="width:60%;">{{ question.option_b }}</label>
+                        </p>
+                        <p class="m-3">
+                            <input type="radio" class="btn-check check-3" name="option_{{question.Qid}}"
+                                value="{{question.option_c}}c" id="btn-check-outlined-{{question.Qid}}3"
+                                autocomplete="off" required>
+                            
+                            <label class="btn btn-outline-primary shadow rounded" for="btn-check-outlined-{{question.Qid}}3"
+                                style="width:60%;">{{ question.option_c }}</label>
+                        </p>
+                        <p class="m-3">
+                            <input type="radio" class="btn-check check-4" name="option_{{question.Qid}}"
+                                value="{{question.option_d}}d" id="btn-check-outlined-{{question.Qid}}4"
+                                autocomplete="off" required>
+                            
+                            
+                            <label class="btn btn-outline-primary shadow rounded" for="btn-check-outlined-{{question.Qid}}4"
+                                style="width:60%;">{{ question.option_d }}</label>
+                        </p>
+
+                    </div>
+                </div>
+
+
+            
+                {% endfor %}
+            <div class="d-grid gap-1 col-6 mx-auto">
+
+                <button type="submit" class="btn btn-success rounded-pill mt-4">Submit</button>
+
+            </div>
+        </form>
+        </center>
+
+    </div>
+</div>
+{% endblock %}

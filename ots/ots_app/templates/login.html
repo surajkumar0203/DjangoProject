@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5" style="padding-top: 50px;">
+    <div class="row d-flex justify-content-center align-items-center  " style="height: 80vh; ">
+        <!-- Login Page -->
+        <div class="col-sm-9 col-md-5  size">
+            <h4 class="alert  text-center" style="background-color: #7eb8ff;color:#fff">Login Page</h4>
+            <form action="{% url 'login' %}" class="row g-1 needs-validation" novalidate method="POST">
+                {% csrf_token %}
+                <label for="usernameInputName" class="form-label">UserName:</label>
+                <input type="text" class="form-control" id="usernameInputName" name="user_name" required autocomplete="off" style="border-color:#7eb8ff;">
+                <div id="error-input-Username" style="color: #dc3545;"></div>
+                
+                <label for="passwordInputPassword" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="passwordInputPassword" name="password" required autocomplete="off" style="border-color:#7eb8ff;">
+                <div id="error-input-password" style="color: #dc3545;"></div>
+                <div class="d-flex justify-content-between">
+                    <p><a href="{% url 'forgot-pin' %}" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Forgot Pin</a></p>
+                    <p><a href="{% url 'ragistration-form' %}" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Register </a></p>
+                </div>
+                <button type="submit" class="btn " style="background-color:#7eb8ff;color:aliceblue"  onmouseover="this.style.backgroundColor='#7eb8ff'"; onmouseout="this.style.backgroundColor='#7eb8ffd5'" >Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

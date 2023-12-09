@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% comment %} <div class="container d-flex justify-content-center align-items-center" style="height:100vh">
+    <div class="col-xl-7  p-3 shadow-lg  mb-3 bg-body-tertiary rounded size">
+      " Imtihaan:Your Success, Our Test"
+      Imtihaan which means exam in Hindi . This is the project created by the group of 4  students in their final semester of BCA degree  as a group project.The Main motto behind this project is to create environment and help those  students who are preparing/ want to prepare for any competitive exam  or  pursuing their degree  in tech field.
+      You all can give test and practice as much you want and move one step towards your success .As our slogan says your success, our test .
+      Thankyou.
+      From the team.
+      Note: This website is in it's initial phase so everything is not as up to mark but we will try everyday, to make this website better for you all.we are always ready to hear feedback from you all try to solve the problem as soon as possible.
+      </div>
+    </div>
+ 
+</div>  {% endcomment %}
+<div class="d-flex container border border-2 border-danger justify-content-center align-items-center">
+  <div class="col-xl-7  p-3 shadow-lg  mb-3 bg-body-tertiary rounded size">
+    " Imtihaan:Your Success, Our Test"
+    Imtihaan which means exam in Hindi . This is the project created by the group of 4  students in their final semester of BCA degree  as a group project.The Main motto behind this project is to create environment and help those  students who are preparing/ want to prepare for any competitive exam  or  pursuing their degree  in tech field.
+    You all can give test and practice as much you want and move one step towards your success .As our slogan says your success, our test .
+    Thankyou.
+    From the team.
+    Note: This website is in it's initial phase so everything is not as up to mark but we will try everyday, to make this website better for you all.we are always ready to hear feedback from you all try to solve the problem as soon as possible.
+    
+  </div>
+  
+  <div>
+    <img src="{% static 'enroll/img/th.jpeg'%}" alt="">
+  </div>
+</div>
+{% endblock content %}
+
+
+{% block footer %}
+<div class="bg-success-subtle py-2 " >
+  <div class="d-flex justify-content-between align-items-center mt-2  text-center">
+    <div><p><span class="ms-2">&#169;</span> 2023 Copyright: .com</p></div>
+  <div class="justify-content-end  flex-sm-column  text-center">
+    <a href=""><img src="{% static 'enroll/img/facebook.png' %}" alt="" style="width: 25px;" class="m-3 "></a>
+    <a href="https://github.com/surajkumar0203" target="_blank"><img src="{% static 'enroll/img/github.png' %}" alt="" style="width: 25px;" class="m-3"></a>
+    <a href=""><img src="{% static 'enroll/img/instagram.png' %}" alt="" style="width: 25px;" class="m-3"></a>
+    <a href=""><img src="{% static 'enroll/img/twitter.png' %}" alt="" style="width: 25px;" class="m-3"></a>
+  </div>
+</div>
+</div>
+{% endblock footer %}

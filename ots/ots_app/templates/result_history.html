@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" mt-5 ">
+    {% if Questions %}
+    <h3 class="m-3 pt-4">
+        Time Durations : {{time_durations}}
+    </h3>
+    {% endif %}
+
+    <div class="container ps-3">
+        <div class="row size text-center  ">
+            <center>
+                {% for question in Questions %}
+                <div class="col-sm-6 themed-grid-col border border-primary border-1 mt-3 shadow rounded-top">
+                    <div class="border-bottom border-primary border-2">
+                        <pre class="m-3" style="display: flex;">
+                            <code style="text-align: start;display: flex;">
+                                <p style="font-family: 'Noto Sans', sans-serif;font-size:larger;color:#3d6eb9">{{question.Question}}</p>
+                            </code>
+                        </pre>
+                    </div>
+                    <div>
+                        <p class="m-3 pt-1 pb-1 border border-2 shadow rounded border-{{question.border_color_a}} {{question.background_color_a}}" style="width:57%;">
+                            {{ question.option_a }}
+                        </p>
+
+                        <p class="m-3 pt-1 pb-1 border border-2  shadow rounded border-{{question.border_color_b}} {{question.background_color_b}}" style="width:57%;">
+                            {{ question.option_b }}
+                        </p>
+                        <p class="m-3 pt-1 pb-1 border border-2 shadow  rounded border-{{question.border_color_c}} {{question.background_color_c}}" style="width:57%;">
+                            {{ question.option_c }}
+                        </p>
+                        <p class="m-3 pt-1 pb-1 border border-2 shadow  rounded border-{{question.border_color_d}} {{question.background_color_d}}" style="width:57%;">
+                            {{ question.option_d }}
+                        </p>
+                    </div>
+                    {% if question.explanation %}
+                        <div class="border-top border-primary border-2 p-3" style="font-family: 'Noto Sans', sans-serif;font-size:medium;color:#3d6eb9">
+                        <p class="text-start m-3" >Explanation:</p>
+                            {{question.explanation}}
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% endfor %}
+                {% if not Questions %}
+                <h3>You have not attempted any test click here to attempt test</h3>
+                {% endif %}
+                <div class="d-grid gap-1 col-6 mx-auto m-4">
+                    <a href="{% url 'home' %}" type="submit" class="btn btn-success rounded-pill mt-4"><span
+                            style="font-size:larger">&#8592; </span>Go To The Home</a>
+                </div>
+            </center>
+        </div>
+    </div>
+{% endblock %}

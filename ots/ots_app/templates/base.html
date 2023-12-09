@@ -1,0 +1,154 @@
+<!-- All Common File -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <!-- css link -->
+    <link rel="stylesheet" href="{% static 'enroll/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'enroll/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'enroll/css/welcome_style.css' %}">
+    <link rel="stylesheet" href="{% static 'enroll/css/logins_style.css' %}">
+    <link rel="stylesheet" href="{% static 'enroll/css/notification_style.css' %}">
+    <link rel="stylesheet" href="{% static 'enroll/css/history_test_list.css' %}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&family=Noto+Sans&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <!-- fav-icon -->
+    <link rel="icon" href="{% static 'enroll/img/logo.png' %}">
+
+    <script src="{% static 'enroll/js/removeCase.js' %}"></script>
+    <script>
+        // button click goto home page
+        function homePage() {
+            window.location.href = '{% url "welcomepage" %}';
+        }
+    </script>
+    <!-- prevent back -->
+    {% block prevent %}
+    {% endblock prevent %}
+</head>
+<header>
+    <nav class="navbar  fixed-top" style="background-color:#7eb8ff7c;z-index:3">
+        <div class="container-fluid">
+            <a class="navbar-brand hamburger-flex">
+
+                <div class="logo">
+                    <div class="logo-img">
+                        <button style="border:none;background-color: #7eb8ff00;" title="Home Page"
+                            onclick="homePage()"><img src="{% static 'enroll/img/logo.png' %}" alt="logo.png"
+                                style="width: 30px; "  ></button>
+                    </div>
+                    <div class="logo-name" style="color:#000000;font-size:20px ">
+                        <p class="mb-0">Iɱƚιहाɳ</p>
+                        <p style="font-size: 8px; " class="mb-0 ps-4">Your Success, Our Test</p>
+                    </div>
+                </div>
+                <!-- humburger -->
+                <div id="hamburger">
+                    <div class="line1 line"></div>
+                    <div class="line2 line"></div>
+                    <div class="line3 line"></div>
+                  </div>
+                {% block hamburger %}
+                {% endblock hamburger %}
+            </a>
+            {#% block buttons %#}
+            
+              <style>
+                div .button{
+                  color: #000000;
+                }
+                div .button:hover{
+                  color: rgba(3, 3, 3, 0.584)
+                }
+              </style>
+              <div class="d-flex buttons-container fs-5 ">
+                
+                <a href="{% url 'home' %}" class="me-3  link-underline link-underline-opacity-0 button" type="submit">Home</a>
+                <a href="{% url 'about' %}" class="me-3  link-underline link-underline-opacity-0 button" type="submit">About</a>
+                <a href="{% url 'contact' %}" class="me-3 link-underline link-underline-opacity-0 button" type="submit">Contact</a>
+                
+                {% block image_arrow%}
+                {% endblock image_arrow %}      
+                
+                
+                {% block buttons %}
+                
+                {% endblock buttons %}
+              </div>
+              
+              <script>
+                let arrow_img=document.getElementById('arrow-img');
+                let log_reg_button=document.getElementById('log-reg-button');
+              
+                arrow_img.addEventListener('click',()=>{
+                  if(log_reg_button.style.display=='none')
+                  {
+                    arrow_img.style.transform="rotate(0deg)";
+                    log_reg_button.style.display='block';
+                  }
+                  else{
+                    arrow_img.style.transform="rotate(-90deg)";
+                    log_reg_button.style.display='none';
+                  }
+                })
+              </script>
+                
+        </div>
+    </nav>
+    <!-- show message -->
+    {% for message in messages %}
+    <div class="d-flex flex-row-reverse msg">
+        <div class="toast show align-items-center text-bg-{{message.tags}} border-0 " id="toast-box" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex" style="width: 100%;">
+                <div class="toast-body" id="values">{{message}}</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    <!-- to remove message automatic -->
+    <script src="{% static 'enroll/js/remove_msg.js' %}"></script>
+    {% endfor %}
+
+
+</header>
+
+<body>
+   
+    {% block content %}
+   
+    {% block login_button %}
+    {% endblock login_button %}
+
+    {% block thumbnail %}
+
+    {% endblock thumbnail %}
+    {% endblock content %}
+
+</body>
+<footer>
+    {% block footer %}
+
+    {% endblock footer%}
+
+</footer>
+
+{% block thumbnail_search %}
+{% endblock thumbnail_search %}
+<!-- javascript link -->
+<script src="{% static 'enroll/js/jquery.js' %}"></script>
+<script src="{% static 'enroll/js/proper.js' %}"></script>
+<script src="{% static 'enroll/js/bootstrap.js' %}"></script>
+<script src="{% static 'enroll/js/script.js' %}"></script>
+<script src="{% static 'enroll/js/login_script.js' %}"></script>
+<script src="{% static 'enroll/js/reset_password_scripts.js' %}"></script>
+<script src="{% static 'enroll/js/test_paper_script.js' %}"></script>
+<script src="{% static 'enroll/js/lCalculate.js' %}"></script>
+
+</html>

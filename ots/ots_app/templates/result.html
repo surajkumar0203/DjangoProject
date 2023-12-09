@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block prevent %}
+    
+{% endblock prevent %}
+
+
+    {% block content %}
+<div class=" mt-5 ">
+    {% if res %}
+        <h3 class="m-3 pt-4">
+            Hello {{name}}, Your Performance Is Here
+        </h3>
+    <div style="display: flex;justify-content: center;">
+        <div class="p-5 overflow-auto ">
+
+            <table class="table table-bordered" style="min-width: 600px;max-width:600px">
+                <tr>
+                    <th scope="col">Title</th>
+                    <td>{{res.subject}}</td>
+                </tr>
+                <tr>   
+                    <th scope="col">Right</th>
+                    <td>{{res.right}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Wrong</th>
+                    <td>{{res.wrong}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Point</th>
+                    <td>{{res.point}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Time Duration</th>
+                    <td>{{res.time_duration}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex p-2 justify-content-center">
+        <div class=" text-center" style="width: 568px;">
+            {% if not_login %}
+                <a href="{% url 'welcomepage' %}" type="submit" class="btn btn-success rounded-pill mt-4"><span
+                    style="font-size:larger">&#8592; </span>Go To The Home</a>
+                        <p class="mt-2" >Please login for more questions
+                        If you are already register <a href="{% url 'login' %}">Click here</a>
+                        If you are not register <a href="{% url 'ragistration-form' %}">Click here</a></p>
+                {% else %}
+                <a href="{% url 'home' %}" type="submit" class="btn btn-success rounded-pill mt-4"><span
+                    style="font-size:larger">&#8592; </span>Go To The Home</a>      
+            {% endif %}
+        </div>
+    </div>
+            {% else %}
+                <h3 class="m-5 pt-4 text-center">You have not attempted any test <a href="{% url 'home' %}">Click here</a> to attempt test</h3>
+            {% endif %}
+    
+</div>
+{% endblock %}

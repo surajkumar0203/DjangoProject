@@ -1,0 +1,27 @@
+
+.main{
+    min-width: 868px;
+    height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    top: 10px;
+    
+}
+ 
+.main thead {
+    position: sticky;
+    top: 0px;
+}
+
+@media screen  and (max-device-width: 794px) {
+    .main{
+        height: 120vh;
+        font-size: 1.1rem;
+    }
+}
+@media screen  and (max-device-width: 414px) {
+    .main{
+        height: 190vh;
+        font-size: 1.1rem;
+    }
+}

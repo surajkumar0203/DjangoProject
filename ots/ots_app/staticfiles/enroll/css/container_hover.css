@@ -1,0 +1,22 @@
+.message {
+
+    opacity: 0;
+  }
+
+  .message:hover {
+
+    opacity: 0.9;
+
+  }
+
+  .p-btn1 {
+
+    z-index: 1;
+  }
+
+  .hover-button1:hover .message {
+    transition: 0.4s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.671);
+    color: #c89bf5;
+
+  }

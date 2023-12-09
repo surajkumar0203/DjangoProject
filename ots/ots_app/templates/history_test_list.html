@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" mt-5 ">
+    {% if results %}
+        
+        <h3 class="m-3 mb-4 pt-4">
+            Hello {{name | capfirst }}, Your Result Is Here
+        </h3>
+    
+        <div class="p-5 pt-0 overflow-auto main">
+
+            <table class="table table-bordered text-center fs-5" style="min-width: 968px;">
+                <thead >
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Right</th>
+                        <th scope="col">Wrong</th>
+                        <th scope="col">Point</th>
+                        <th scope="col">Your Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr>
+                            <td>{{result.title}}</td>
+                            <td>{{result.date}}</td>
+                            <td>{{result.time}}</td>
+                            <td>{{result.right}}</td>
+                            <td>{{result.wrong}}</td>
+                            <td>{{result.points}}</td>
+                            <td><a href="{% url 'result-history' result.user_answer_id %}" class="link-offset-2 link-underline link-underline-opacity-100">View result</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% else %}
+        <h3 class="m-5 pt-4 text-center">You have not attempted any test <a href="{% url 'home' %}">click here</a> to attempt test</h3>
+    {% endif %}
+</div>
+{% endblock %}

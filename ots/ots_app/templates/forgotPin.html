@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5" style="padding-top: 50px;">
+    <div class="row d-flex justify-content-center align-items-center" style="height: 80vh;">
+        
+        <div class="col-sm-5 size">
+            <h4 class="alert  text-center" style="background-color: #7eb8ff;color:#fff">Reset Password</h4>
+            <form action="{% url 'forgot-pin' %}" class="row g-1 needs-validation" novalidate method="POST">
+                {% csrf_token %}
+                <label for="usernameInputName" class="form-label">UserName/Email</label>
+                <input type="text" class="form-control" id="usernameInputName" value="{{email_name}}" name="email_name" placeholder="Enter Ragistered Email or Username" required autocomplete="off" style="border-color:#7eb8ff;">
+                <div id="error-input-Username"></div>
+                <button type="submit" class="btn mt-4" style="background-color:#7eb8ff;color:aliceblue"  onmouseover="this.style.backgroundColor='#7eb8ff'"; onmouseout="this.style.backgroundColor='#7eb8ffd5'">Send OTP</button>
+            </form>
+
+            {% if otp_validate %}
+                <div class="mt-1">
+                    <form action="{% url 'reset_password' %}" method="POST">
+                        {% csrf_token %}
+                        <label for="otpInputOtp" class="form-label">Enter OTP</label>
+                        <input type="text" class="form-control" name="otp" id="otpInputOtp" style="border-color:#7eb8ff;">
+                        <button type="submit" class="btn mt-3" style="background-color:#7eb8ff;color:aliceblue"  onmouseover="this.style.backgroundColor='#7eb8ff'"; onmouseout="this.style.backgroundColor='#7eb8ffd5'" id="btn" >Verify Your Self</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
